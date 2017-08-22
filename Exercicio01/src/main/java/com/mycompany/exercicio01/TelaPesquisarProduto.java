@@ -41,16 +41,38 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
 
         TablePesquisar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Descrição", "Valor compra", "Valor venda", "Categoria"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TablePesquisar);
+        if (TablePesquisar.getColumnModel().getColumnCount() > 0) {
+            TablePesquisar.getColumnModel().getColumn(0).setResizable(false);
+            TablePesquisar.getColumnModel().getColumn(1).setResizable(false);
+            TablePesquisar.getColumnModel().getColumn(2).setResizable(false);
+            TablePesquisar.getColumnModel().getColumn(3).setResizable(false);
+            TablePesquisar.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jLabel1.setText("Nome: ");
 
