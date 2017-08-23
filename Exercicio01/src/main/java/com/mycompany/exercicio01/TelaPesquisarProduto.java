@@ -34,6 +34,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         bttPesquisar = new javax.swing.JButton();
         bttSair = new javax.swing.JButton();
+        bttExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +81,8 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
 
         bttSair.setText("Sair");
 
+        bttExcluir.setText("Excluir");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,6 +101,8 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bttExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bttSair, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -112,7 +117,9 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(bttSair)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bttSair)
+                    .addComponent(bttExcluir))
                 .addGap(20, 20, 20))
         );
 
@@ -173,6 +180,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablePesquisar;
+    private javax.swing.JButton bttExcluir;
     private javax.swing.JButton bttPesquisar;
     private javax.swing.JButton bttSair;
     private javax.swing.JLabel jLabel1;
