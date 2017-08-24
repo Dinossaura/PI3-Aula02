@@ -5,4 +5,5 @@ descricao VARCHAR(500),
 vl_compra DECIMAL(11,2) NOT NULL, 
 vl_venda DECIMAL(11,2) NOT NULL, 
 categoria VARCHAR(500), 
-dt_cadastro TIMESTAMP NOT NULL);
+dt_cadastro TIMESTAMP NOT NULL
+);

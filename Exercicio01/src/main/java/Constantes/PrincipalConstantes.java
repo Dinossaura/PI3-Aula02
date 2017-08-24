@@ -7,7 +7,7 @@ package Constantes;
 
 /**
  *
- * @author mayra.jpereira
+ * @author Mayra Pereira
  */
 public class PrincipalConstantes {
     public static final String DB_ADDRESS = "jdbc:derby://localhost:1527/produtobd";

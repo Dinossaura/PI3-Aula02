@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.exercicio01.classe;
+package Classe;
+
+import java.math.BigInteger;
+import java.sql.Date;
 
 /**
  *
@@ -16,6 +19,7 @@ public class Produto {
     private float vVenda;
     private float vCompra;
     private String categoria;
+    private Date hora;
 
     public Integer getCod_prod() {
         return cod_prod;
@@ -24,6 +28,8 @@ public class Produto {
     public void setCod_prod(Integer cod_prod) {
         this.cod_prod = cod_prod;
     }
+
+   
 
     public String getNome() {
         return nome;
@@ -53,6 +59,14 @@ public class Produto {
         return vCompra;
     }
 
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
+    }
+
     public void setvCompra(float vCompra) {
         this.vCompra = vCompra;
     }
@@ -64,6 +78,8 @@ public class Produto {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    
     
     
 }

@@ -13,10 +13,10 @@ import java.util.Properties;
 
 /**
  *
- * @author mayra.jpereira
+ * @author Mayra Pereira
  */
 public class Utils {
-     public static Connection getConnection(){
+    public static Connection getConnection(){
         Connection connection = null;
         
         try {            
@@ -26,7 +26,7 @@ public class Utils {
             properties.put("password", PrincipalConstantes.DB_PASS);
             
             connection = DriverManager.getConnection(dbURL, properties);
-             
+            
              
         }catch(SQLException e){
             e.printStackTrace();
