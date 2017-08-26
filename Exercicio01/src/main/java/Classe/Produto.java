@@ -19,7 +19,7 @@ public class Produto {
     private float vVenda;
     private float vCompra;
     private String categoria;
-    private Date hora;
+    private Date dataCadastro;
 
     public Integer getCod_prod() {
         return cod_prod;
@@ -55,16 +55,17 @@ public class Produto {
         this.vVenda = vVenda;
     }
 
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+    
+    
     public float getvCompra() {
         return vCompra;
-    }
-
-    public Date getHora() {
-        return hora;
-    }
-
-    public void setHora(Date hora) {
-        this.hora = hora;
     }
 
     public void setvCompra(float vCompra) {
