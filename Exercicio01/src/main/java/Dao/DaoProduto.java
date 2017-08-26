@@ -60,8 +60,13 @@ public class DaoProduto {
     }
      
      //Lista os produtos da base de dados
-     public static List<Produto> listar() throws SQLException, Exception {
-        String sql = "SELECT * FROM produto";
+     public static List<Produto> listar(String nome) throws SQLException, Exception {
+         String sql = "";
+         if(nome == ""){
+            sql = "SELECT * FROM produto";
+        }else{
+            sql = "SELECT * FROM produto WHERE titulo LIKE ?";
+        }
         List<Produto> listaP = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
