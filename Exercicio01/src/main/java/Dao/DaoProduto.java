@@ -5,7 +5,7 @@
  */
 package Dao;
 
-import Utils.Utils;
+import Utils.ConexaoBanco;
 import Classe.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +25,7 @@ public class DaoProduto {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
-            connection = Utils.getConnection();
+            connection = ConexaoBanco.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, p.getNome());
             preparedStatement.setString(2, p.getDesc());
@@ -53,7 +53,7 @@ public class DaoProduto {
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
         try {
-            connection = Utils.getConnection();
+            connection = ConexaoBanco.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setBoolean(1, true);
 
