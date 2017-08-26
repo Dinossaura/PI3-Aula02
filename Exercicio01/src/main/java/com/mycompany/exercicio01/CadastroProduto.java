@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Telas;
+package com.mycompany.exercicio01;
+
+import Classe.Produto;
 
 /**
  *
@@ -62,6 +64,11 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel7.setText("Categoria: ");
 
         bttSalvar.setText("Salvar");
+        bttSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttSalvarActionPerformed(evt);
+            }
+        });
 
         bttSair.setText("Sair");
 
@@ -147,6 +154,20 @@ public class CadastroProduto extends javax.swing.JFrame {
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        Produto p = new Produto();
+        p.setNome(txtNome.getText());
+        p.setDesc(txtDesc.getText());
+        p.setvCompra(Float.parseFloat(txtVCompra.getText()));
+        p.setvVenda(Float.parseFloat(txtVVenda.getText()));
+        p.setDesc(txtDesc.getText());
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_bttSalvarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Telas;
+package com.mycompany.exercicio01;
 
 /**
  *
@@ -11,9 +11,9 @@ package Telas;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaPrincipal
-     */
+    private CadastroProduto cadProd;
+    private TelaPesquisarProduto pesqProd;
+            
     public TelaPrincipal() {
         initComponents();
     }
@@ -36,8 +36,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Menu"));
 
         BttCadastrar.setText("Cadastrar");
+        BttCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BttCadastrarActionPerformed(evt);
+            }
+        });
 
         Bttalteracoes.setText("Consulta/ Altera");
+        Bttalteracoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BttalteracoesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,6 +89,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BttCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttCadastrarActionPerformed
+        if (cadProd == null || !cadProd.isDisplayable() ) {
+            cadProd = new CadastroProduto();
+            cadProd.setVisible(true);
+        }
+        cadProd.toFront();
+    }//GEN-LAST:event_BttCadastrarActionPerformed
+
+    private void BttalteracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttalteracoesActionPerformed
+        if (pesqProd == null || !pesqProd.isDisplayable()) {
+            pesqProd = new TelaPesquisarProduto();
+            pesqProd.setVisible(true);
+        }
+        pesqProd.toFront();
+    }//GEN-LAST:event_BttalteracoesActionPerformed
 
     /**
      * @param args the command line arguments
