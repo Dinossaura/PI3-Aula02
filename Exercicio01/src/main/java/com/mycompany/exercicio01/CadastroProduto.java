@@ -6,6 +6,9 @@
 package com.mycompany.exercicio01;
 
 import Classe.Produto;
+import Service.ServicoProduto;
+import Validador.ValidadorProduto;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -163,8 +166,17 @@ public class CadastroProduto extends javax.swing.JFrame {
         p.setvVenda(Float.parseFloat(txtVVenda.getText()));
         p.setDesc(txtDesc.getText());
         
+       
         
-        
+         try {
+             ServicoProduto.cadastrarProduto(p);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+       JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso",
+                    "Cadastrado", JOptionPane.INFORMATION_MESSAGE);
         
         
     }//GEN-LAST:event_bttSalvarActionPerformed

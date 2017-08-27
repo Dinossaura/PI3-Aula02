@@ -23,14 +23,14 @@ public class DaoProduto {
     //Insere novo produto na base de dados
      public static void inserir(Produto p) throws SQLException, Exception {
 
-         String sql = "INSERT INTO produto (nome, descricao, vl_compra, vl_venda, categoria, dt_cadastro) VALUES (?, ?, ?, ?, ?,?)";
+        String sql = "INSERT INTO produto (nome, descricao, vl_compra, vl_venda, categoria, dt_cadastro) VALUES (?, ?, ?, ?, ?,?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = ConexaoBanco.getConnection();
             connection.setAutoCommit(false);
             try {
-                 preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setString(1, p.getNome());
                 preparedStatement.setString(2, p.getDesc());
                 preparedStatement.setFloat(3, p.getvCompra());
@@ -108,7 +108,7 @@ public class DaoProduto {
     }
      
      //Altera os produtos da base de dados
-     public Produto updateProduto(Produto produto) throws Exception{
+     public static Produto updateProduto(Produto produto) throws Exception{
         System.out.println("Atualizando produto...");
          String query = "UPDATE produto SET nome=?, descricao=?, vl_compra=?, vl_venda=?, categoria=?, dt_cadastro=? WHERE ID=?";
         
@@ -146,7 +146,7 @@ public class DaoProduto {
         return produto;
     }
      //Deleta produto da base de dados
-     public void deletarProduto(int id) throws Exception{
+     public static void deletarProduto(int id) throws Exception{
             System.out.println("Deletando produto de codigo: "+id);
             String query = "DELETE FROM produto WHERE id=?";
         
