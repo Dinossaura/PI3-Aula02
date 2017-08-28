@@ -19,6 +19,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
     public TelaPesquisarProduto() {
         initComponents();
         setLocationRelativeTo(null);
+        
     }
 
     /**

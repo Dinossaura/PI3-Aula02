@@ -8,6 +8,8 @@ package com.mycompany.exercicio01;
 import Classe.Produto;
 import Service.ServicoProduto;
 import Validador.ValidadorProduto;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,12 +20,14 @@ public class CadastroProduto extends javax.swing.JFrame {
     
     private TelaPrincipal telaPrinc;
     private CadastroProduto telaCadastro;
+    
     /**
      * Creates new form CadastroProduto
      */
     public CadastroProduto() {
         initComponents();
         setLocationRelativeTo(null);
+        inicializarDatas();
     }
 
     /**
@@ -48,6 +52,8 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtCat = new javax.swing.JTextField();
         bttSalvar = new javax.swing.JButton();
         bttvoltar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblData = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +89,10 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Data: ");
+
+        lblData.setText("Data aqui");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -95,27 +105,37 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(bttvoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                                .addComponent(bttSalvar))
-                            .addComponent(txtCat, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDesc, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtVCompra, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtVVenda, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(bttvoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                                        .addComponent(bttSalvar))
+                                    .addComponent(txtCat, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDesc, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtVCompra, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtVVenda, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblData)))
                         .addGap(0, 30, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblData))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -135,7 +155,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttSalvar)
                     .addComponent(bttvoltar))
@@ -165,7 +185,16 @@ public class CadastroProduto extends javax.swing.JFrame {
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
+ 
+    //método para inicializar data na tela cadastro de produto 
+    private void inicializarDatas() {
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
 
+        Date data = new Date();
+        String dataFormatada = formatador.format(data);
+        lblData.setText(dataFormatada);
+    }
+     
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
         Produto p = new Produto();
         p.setNome(txtNome.getText());
@@ -239,12 +268,14 @@ public class CadastroProduto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttSalvar;
     private javax.swing.JButton bttvoltar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblData;
     private javax.swing.JTextField txtCat;
     private javax.swing.JTextField txtDesc;
     private javax.swing.JTextField txtNome;
