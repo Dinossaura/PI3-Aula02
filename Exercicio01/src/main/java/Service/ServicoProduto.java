@@ -15,7 +15,7 @@ import java.util.List;
  * @author Magno
  */
 public class ServicoProduto {
-   //DaoProduto DaoProduto = new Dao.DaoProduto();
+   
     
     public static void cadastrarProduto(Produto produto) throws ProdutoException, DataSourceException{
         
