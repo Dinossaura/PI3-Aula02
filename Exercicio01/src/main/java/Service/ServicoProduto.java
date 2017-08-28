@@ -56,6 +56,15 @@ public class ServicoProduto {
         }
     }
      
+     public static Produto encontrarProdutoPorCodigo(int id) throws ProdutoException, DataSourceException {
+        try {
+            return DaoProduto.encontrarProduto(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DataSourceException("Erro na fonte de dados", e);
+        }
+    }
+     
      public static void excluirProduto(Integer id) throws ProdutoException, DataSourceException {
         try {
             DaoProduto.deletarProduto(id);

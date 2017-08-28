@@ -107,6 +107,42 @@ public class DaoProduto {
         return listaP;
     }
      
+    //Busca produtp por id
+    public static Produto encontrarProduto(int id) throws ClassNotFoundException{//retorna um item
+        List<Produto> lista = new ArrayList<>();
+        Produto produto = new Produto();
+        System.out.println("Buscando produto na base de dados...");
+        String query = "SELECT * FROM produto WHERE id=?";//addicionar o % %
+        
+        try {
+            Connection connection = null;
+            connection = ConexaoBanco.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            
+            preparedStatement.setInt(1,id);
+            
+                        
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()){
+                produto.setCod_prod(rs.getInt(1));
+                produto.setNome(rs.getString(2));
+                produto.setDesc(rs.getString(3));
+                produto.setvCompra(rs.getFloat(4));
+                produto.setvVenda(rs.getFloat(5));
+                produto.setCategoria(rs.getString(6));
+                produto.setDataCadastro(rs.getTimestamp(7));
+                lista.add(produto);
+            }
+            
+            System.out.println("Busca efetuada com sucesso");
+        } catch (SQLException ex) {
+            System.out.println("Erro ao buscar produto"+ex);
+        }        
+        return produto;
+    
+    }
+     
      //Altera os produtos da base de dados
      public static Produto updateProduto(Produto produto) throws Exception{
         System.out.println("Atualizando produto...");
@@ -126,6 +162,7 @@ public class DaoProduto {
                 preparedStatement.setFloat(4, produto.getvVenda());
                 preparedStatement.setString(5, produto.getCategoria());
                 preparedStatement.setTimestamp(6, produto.getDataCadastro());
+                preparedStatement.setInt(7, produto.getCod_prod());
             
                 preparedStatement.executeUpdate();
                 preparedStatement.close();

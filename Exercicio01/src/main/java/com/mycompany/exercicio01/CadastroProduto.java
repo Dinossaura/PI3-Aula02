@@ -22,6 +22,29 @@ public class CadastroProduto extends javax.swing.JFrame {
     private TelaPrincipal telaPrinc;
     private CadastroProduto telaCadastro;
     
+    public boolean alterar;
+    Produto produto = new Produto();
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public boolean isAlterar() {
+        return alterar;
+    }
+
+    public void setAlterar(boolean alterar) {
+        this.alterar = alterar;
+    }
+    
+    public void populateFields(Produto produto){
+        setAlterar(true);
+        atualizarForm(produto);
+    }
     /**
      * Creates new form CadastroProduto
      */
@@ -197,30 +220,59 @@ public class CadastroProduto extends javax.swing.JFrame {
     }
      
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
-        Timestamp datadeHoje = new Timestamp(System.currentTimeMillis());
         
-        Produto p = new Produto();
-        p.setNome(txtNome.getText());
-        p.setDesc(txtDesc.getText());
-        p.setvCompra(Float.parseFloat(txtVCompra.getText()));
-        p.setvVenda(Float.parseFloat(txtVVenda.getText()));
-        p.setDesc(txtDesc.getText());
-        p.setCategoria(txtCat.getText());
-        p.setDataCadastro(datadeHoje);
+        if(isAlterar()==false){
+            Timestamp datadeHoje = new Timestamp(System.currentTimeMillis());
         
-       
+            Produto p = new Produto();
+            p.setNome(txtNome.getText());
+            p.setDesc(txtDesc.getText());
+            p.setvCompra(Float.parseFloat(txtVCompra.getText().replace(",", ".")));;
+            p.setvVenda(Float.parseFloat(txtVVenda.getText().replace(",", ".")));
+            p.setDesc(txtDesc.getText());
+            p.setCategoria(txtCat.getText());
+            p.setDataCadastro(datadeHoje);
         
-         try {
-             ServicoProduto.cadastrarProduto(p);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
-                        "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+            try {
+                ServicoProduto.cadastrarProduto(p);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                            "Erro", JOptionPane.ERROR_MESSAGE);
+            }
 
-       JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso",
+            JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso",
                     "Cadastrado", JOptionPane.INFORMATION_MESSAGE);
         
-        limparTela();
+            limparTela();
+        }else{           
+            produto.setNome(txtNome.getText());
+            produto.setDesc(txtDesc.getText());
+            produto.setvCompra(Float.parseFloat(txtVCompra.getText().replace(",", ".")));
+            produto.setvVenda(Float.parseFloat(txtVVenda.getText().replace(",", ".")));
+            produto.setCategoria(txtCat.getText());
+           
+            try {
+                //Insere novo produto na base de dados
+                ServicoProduto.atualizarProduto(produto);
+            } catch (Exception e) {
+                //Exibe mensagens de erro para o usuário
+                JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            JOptionPane.showMessageDialog(rootPane, "Produto atualizado com sucesso",
+                    "Atualização efetuada", JOptionPane.INFORMATION_MESSAGE);
+            
+             if (telaPrinc == null || !telaPrinc.isDisplayable() ) {
+                telaPrinc = new TelaPrincipal();
+                telaPrinc.setVisible(true);
+            }
+        
+            this.setVisible(false);
+            telaPrinc.toFront();
+        }
+        
     }//GEN-LAST:event_bttSalvarActionPerformed
 
     private void limparTela(){
@@ -244,6 +296,16 @@ public class CadastroProduto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bttvoltarActionPerformed
 
+     private void atualizarForm(Produto produto) {                                         
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+        //JOptionPane.showMessageDialog(null, alterar);
+            txtNome.setText(produto.getNome());
+            txtVCompra.setText(String.valueOf(produto.getvCompra()));
+            txtCat.setText(produto.getCategoria());
+            txtDesc.setText(produto.getDesc());
+            txtVVenda.setText(String.valueOf(produto.getvVenda()));
+    }  
     /**
      * @param args the command line arguments
      */

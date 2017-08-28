@@ -11,6 +11,7 @@ import Exceptions.ProdutoException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.mycompany.exercicio01.CadastroProduto;
 
 /**
  *
@@ -21,7 +22,10 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
      private TelaPrincipal telaPrinc;
      private TelaPesquisarProduto telaPesqui;
      //Armazena a ultima pesquisa
-        String ultimaPesquisa = null;
+     String ultimaPesquisa = null;
+     
+     //Instancia do Form CadastrarProduto para efetuar alteracoes
+     CadastroProduto cadastroProduto = new CadastroProduto();
     /**
      * Creates new form TelaPesquisarProduto
      */
@@ -48,6 +52,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
         bttPesquisar = new javax.swing.JButton();
         bttvoltar = new javax.swing.JButton();
         bttExcluir = new javax.swing.JButton();
+        bttAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,20 +60,20 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
 
         TablePesquisar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Descrição", "Valor compra", "Valor venda", "Categoria", "Data"
+                "Código", "Nome", "Descrição", "Valor compra", "Valor venda", "Categoria", "Data"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -105,6 +110,18 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
         });
 
         bttExcluir.setText("Excluir");
+        bttExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttExcluirActionPerformed(evt);
+            }
+        });
+
+        bttAlterar.setText("Alterar");
+        bttAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,6 +141,8 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bttAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bttExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bttvoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,7 +161,8 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttvoltar)
-                    .addComponent(bttExcluir))
+                    .addComponent(bttExcluir)
+                    .addComponent(bttAlterar))
                 .addGap(20, 20, 20))
         );
 
@@ -210,12 +230,13 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
             Produto pro = resultado.get(i);
             if (pro != null) {
                 Object[] row = new Object[13];
-                row[0] = pro.getNome();
-                row[1] = pro.getDesc();
-                row[2] = pro.getvCompra();
-                row[3] = pro.getvVenda();
-                row[4] = pro.getCategoria();
-                row[5] = pro.getDataCadastro();
+                row[0] = pro.getCod_prod();
+                row[1] = pro.getNome();
+                row[2] = pro.getDesc();
+                row[3] = pro.getvCompra();
+                row[4] = pro.getvVenda();
+                row[5] = pro.getCategoria();
+                row[6] = pro.getDataCadastro();
                 model.addRow(row);
             }
         }
@@ -237,6 +258,81 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_bttvoltarActionPerformed
+
+    private void bttExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttExcluirActionPerformed
+        // TODO add your handling code here:
+        //Verifica se há itens selecionados para exclusão.
+        //Caso negativo, ignora o comando
+        if (TablePesquisar.getSelectedRow() >= 0) {
+            
+            //Obtém a linha do item selecionado
+            final int row = TablePesquisar.getSelectedRow();
+            //Obtém o nome do produto da linha indicada para exibição
+            //de mensagem de confirmação de exclusão utilizando seu nome
+            String nome = (String) TablePesquisar.getValueAt(row, 1);
+            //Mostra o diálogo de confirmação de exclusão
+            int resposta = JOptionPane.showConfirmDialog(rootPane,
+                "Excluir o produto \"" + nome + "\"?",
+                "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+            //Se o valor de resposta for "Sim" para a exclusão
+            if (resposta == JOptionPane.YES_OPTION) {
+                try {
+                    //Obtém o ID do produto
+                    Integer codigo = (Integer) TablePesquisar.getValueAt(row, 0);
+                    //Solicita ao serviço a inativação do cliente com o ID
+                    ServicoProduto.excluirProduto(codigo);
+                    //Atualiza a lista após a "exclusão"
+                    this.refreshListProdutos();
+                } catch (Exception e) {
+                    //Se ocorrer algum erro técnico, mostra-o no console,
+                    //mas esconde-o do usuário
+                    e.printStackTrace();
+                    //Exibe uma mensagem de erro genérica ao usuário
+                    JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                            "Falha na Exclusão", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_bttExcluirActionPerformed
+
+    private void bttAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAlterarActionPerformed
+        // TODO add your handling code here:
+        try {
+            //Obtém a linha selecionada na tabela de resultados
+            final int row = TablePesquisar.getSelectedRow();
+            //Verifica se há linha selecionada na tabela
+            if (row >= 0) {
+                //Obtém a linha selecionada na tabela
+                Integer codigo = (Integer) TablePesquisar.getValueAt(row, 0);
+                
+                //Solicita ao serviço a obtenção do cliente a partir do
+                //ID selecionado na tabela
+                Produto produto = ServicoProduto.encontrarProdutoPorCodigo(codigo);
+                cadastroProduto = new CadastroProduto();   
+                cadastroProduto.populateFields(produto);
+              
+
+                cadastroProduto.invalidate();
+                cadastroProduto.validate();
+                cadastroProduto.repaint();
+                cadastroProduto.setProduto(produto);  
+                this.dispose();
+                this.setVisible(false);
+                cadastroProduto.setVisible(true); 
+                            
+               // formAlterar.toFront();
+                
+            }
+        } catch (Exception e) {
+            //Se ocorrer algum erro técnico, mostra-o no console,
+            //mas esconde-o do usuário
+            e.printStackTrace();
+            //Exibe uma mensagem de erro genérica ao usuário
+            JOptionPane.showMessageDialog(rootPane, "Não é possível "
+                + "exibir os detalhes deste produto.",
+                "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bttAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,6 +371,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablePesquisar;
+    private javax.swing.JButton bttAlterar;
     private javax.swing.JButton bttExcluir;
     private javax.swing.JButton bttPesquisar;
     private javax.swing.JButton bttvoltar;
