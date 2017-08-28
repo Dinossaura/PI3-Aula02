@@ -16,6 +16,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             
     public TelaPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,6 +31,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         BttCadastrar = new javax.swing.JButton();
         Bttalteracoes = new javax.swing.JButton();
+        bttsair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +51,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        bttsair.setText("Sair");
+        bttsair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttsairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -59,6 +68,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(Bttalteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bttsair, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -67,7 +80,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BttCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Bttalteracoes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(bttsair, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,6 +110,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             cadProd = new CadastroProduto();
             cadProd.setVisible(true);
         }
+        this.setVisible(false);
         cadProd.toFront();
     }//GEN-LAST:event_BttCadastrarActionPerformed
 
@@ -103,8 +119,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             pesqProd = new TelaPesquisarProduto();
             pesqProd.setVisible(true);
         }
+        this.setVisible(false);
         pesqProd.toFront();
     }//GEN-LAST:event_BttalteracoesActionPerformed
+
+    private void bttsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttsairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_bttsairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +166,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BttCadastrar;
     private javax.swing.JButton Bttalteracoes;
+    private javax.swing.JButton bttsair;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -72,7 +72,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="bttExcluir" min="-2" pref="97" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="bttSair" min="-2" pref="97" max="-2" attributes="0"/>
+                  <Component id="bttvoltar" min="-2" pref="97" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -90,7 +90,7 @@
                   <Component id="jScrollPane1" min="-2" pref="282" max="-2" attributes="0"/>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="bttSair" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bttvoltar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bttExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -164,11 +164,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttPesquisarActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bttSair">
+        <Component class="javax.swing.JButton" name="bttvoltar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sair"/>
+            <Property name="text" type="java.lang.String" value="Voltar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttvoltarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bttExcluir">
           <Properties>

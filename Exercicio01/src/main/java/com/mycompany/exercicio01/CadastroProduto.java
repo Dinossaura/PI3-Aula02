@@ -15,12 +15,15 @@ import javax.swing.JOptionPane;
  * @author mayra.jpereira
  */
 public class CadastroProduto extends javax.swing.JFrame {
-
+    
+    private TelaPrincipal telaPrinc;
+    private CadastroProduto telaCadastro;
     /**
      * Creates new form CadastroProduto
      */
     public CadastroProduto() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,7 +47,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCat = new javax.swing.JTextField();
         bttSalvar = new javax.swing.JButton();
-        bttSair = new javax.swing.JButton();
+        bttvoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +76,12 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
-        bttSair.setText("Sair");
+        bttvoltar.setText("Voltar");
+        bttvoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttvoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,7 +102,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(bttSair, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bttvoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                                 .addComponent(bttSalvar))
                             .addComponent(txtCat, javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +138,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttSalvar)
-                    .addComponent(bttSair))
+                    .addComponent(bttvoltar))
                 .addContainerGap())
         );
 
@@ -181,6 +189,18 @@ public class CadastroProduto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bttSalvarActionPerformed
 
+    private void bttvoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttvoltarActionPerformed
+        // TODO add your handling code here:
+        if (telaPrinc == null || !telaPrinc.isDisplayable() ) {
+            telaPrinc = new TelaPrincipal();
+            telaPrinc.setVisible(true);
+        }
+        
+        this.setVisible(false);
+        telaPrinc.toFront();
+        
+    }//GEN-LAST:event_bttvoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -217,8 +237,8 @@ public class CadastroProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bttSair;
     private javax.swing.JButton bttSalvar;
+    private javax.swing.JButton bttvoltar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

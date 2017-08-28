@@ -10,12 +10,15 @@ package com.mycompany.exercicio01;
  * @author mayra.jpereira
  */
 public class TelaPesquisarProduto extends javax.swing.JFrame {
-
+    
+     private TelaPrincipal telaPrinc;
+     private TelaPesquisarProduto telaPesqui;
     /**
      * Creates new form TelaPesquisarProduto
      */
     public TelaPesquisarProduto() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -33,7 +36,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
         txtPesqNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         bttPesquisar = new javax.swing.JButton();
-        bttSair = new javax.swing.JButton();
+        bttvoltar = new javax.swing.JButton();
         bttExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,8 +81,18 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
         jLabel1.setText("Nome: ");
 
         bttPesquisar.setText("Pesquisar");
+        bttPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttPesquisarActionPerformed(evt);
+            }
+        });
 
-        bttSair.setText("Sair");
+        bttvoltar.setText("Voltar");
+        bttvoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttvoltarActionPerformed(evt);
+            }
+        });
 
         bttExcluir.setText("Excluir");
 
@@ -103,7 +116,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bttExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bttSair, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bttvoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,7 +131,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bttSair)
+                    .addComponent(bttvoltar)
                     .addComponent(bttExcluir))
                 .addGap(20, 20, 20))
         );
@@ -142,6 +155,23 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bttPesquisarActionPerformed
+
+    private void bttvoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttvoltarActionPerformed
+        // TODO add your handling code here:
+        if (telaPrinc == null || !telaPrinc.isDisplayable() ) {
+            telaPrinc = new TelaPrincipal();
+            telaPrinc.setVisible(true);
+        }
+        
+        this.setVisible(false);
+        telaPrinc.toFront();
+        
+        
+    }//GEN-LAST:event_bttvoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +212,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
     private javax.swing.JTable TablePesquisar;
     private javax.swing.JButton bttExcluir;
     private javax.swing.JButton bttPesquisar;
-    private javax.swing.JButton bttSair;
+    private javax.swing.JButton bttvoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
