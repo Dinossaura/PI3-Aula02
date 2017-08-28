@@ -5,6 +5,13 @@
  */
 package com.mycompany.exercicio01;
 
+import Classe.Produto;
+import Service.ServicoProduto;
+import Exceptions.ProdutoException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author mayra.jpereira
@@ -13,6 +20,8 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
     
      private TelaPrincipal telaPrinc;
      private TelaPesquisarProduto telaPesqui;
+     //Armazena a ultima pesquisa
+        String ultimaPesquisa = null;
     /**
      * Creates new form TelaPesquisarProduto
      */
@@ -158,8 +167,62 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
 
     private void bttPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPesquisarActionPerformed
         // TODO add your handling code here:
+                boolean resultadoPesquisa = false;
+        
+        //Pega valor da pesquisa e atribui a variavel para efetuar busca
+        ultimaPesquisa = txtPesqNome.getText();
+        
+        try {
+            resultadoPesquisa = refreshListProdutos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                    "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!resultadoPesquisa) {
+            JOptionPane.showMessageDialog(rootPane, "A pesquisa não retornou resultados ",
+                    "Sem resultados", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_bttPesquisarActionPerformed
 
+    //Atualiza a lista de Produtos. Pode ser chamado por outras telas
+    public boolean refreshListProdutos() throws ProdutoException, Exception {
+        //Realiza a pesquisa de produtos com o último valor de pesquisa
+        //para atualizar a lista
+        List<Produto> resultado = ServicoProduto.procurarProduto(ultimaPesquisa);
+
+        //Obtém o elemento representante do conteúdo da tabela na tela
+        DefaultTableModel model = (DefaultTableModel) TablePesquisar.getModel();
+        //Indica que a tabela deve excluir todos seus elementos
+        //Isto limpará a lista, mesmo que a pesquisa não tenha sucesso
+        model.setRowCount(0);
+
+        //Verifica se não existiram resultados. Caso afirmativo, encerra a
+        //atualização e indica ao elemento acionador o não sucesso da pesquisa
+        if (resultado == null || resultado.size() <= 0) {
+            return false;
+        }
+
+        //Percorre a lista de resultados e os adiciona na tabela
+        for (int i = 0; i < resultado.size(); i++) {
+            Produto pro = resultado.get(i);
+            if (pro != null) {
+                Object[] row = new Object[13];
+                row[0] = pro.getNome();
+                row[1] = pro.getDesc();
+                row[2] = pro.getvCompra();
+                row[3] = pro.getvVenda();
+                row[4] = pro.getCategoria();
+                model.addRow(row);
+            }
+        }
+
+        //Se chegamos até aqui, a pesquisa teve sucesso, então
+        //retornamos "true" para o elemento acionante, indicando
+        //que não devem ser exibidas mensagens de erro
+        return true;
+    }
     private void bttvoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttvoltarActionPerformed
         // TODO add your handling code here:
         if (telaPrinc == null || !telaPrinc.isDisplayable() ) {

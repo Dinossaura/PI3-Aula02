@@ -62,10 +62,10 @@ public class DaoProduto {
      //Lista os produtos da base de dados
      public static List<Produto> listar(String nome) throws SQLException, Exception {
          String sql = "";
-         if(nome == ""){
+         if((nome == " ")||(nome == null)){
             sql = "SELECT * FROM produto";
         }else{
-            sql = "SELECT * FROM produto WHERE titulo LIKE ?";
+            sql = "SELECT * FROM produto WHERE nome LIKE ?";
         }
         List<Produto> listaP = null;
         Connection connection = null;
@@ -74,7 +74,7 @@ public class DaoProduto {
         try {
             connection = ConexaoBanco.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setBoolean(1, true);
+            preparedStatement.setString(1,"%"+nome+"%");
 
             result = preparedStatement.executeQuery();
             while (result.next()) {

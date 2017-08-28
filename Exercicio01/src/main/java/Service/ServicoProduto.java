@@ -44,7 +44,7 @@ public class ServicoProduto {
         }
     }
     
-     public  List<Produto> procurarProduto(String nome) throws ProdutoException, DataSourceException {
+     public static List<Produto> procurarProduto(String nome) throws ProdutoException, DataSourceException {
         try {
         return DaoProduto.listar(nome);
           

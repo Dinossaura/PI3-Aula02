@@ -26,6 +26,7 @@ public class ConexaoBanco{
 	    "jdbc:derby://localhost:1527/produtobd;SecurityMechanism=3",
 	    "app", // usuário BD
 	    "app"); // senha BD
+            System.out.println("conectado");
     return conn;
   }
 
