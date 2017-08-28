@@ -7,6 +7,7 @@ package Classe;
 
 import java.math.BigInteger;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Produto {
     private float vVenda;
     private float vCompra;
     private String categoria;
-    private Date dataCadastro;
+    private Timestamp dataCadastro;
 
     public Integer getCod_prod() {
         return cod_prod;
@@ -55,11 +56,11 @@ public class Produto {
         this.vVenda = vVenda;
     }
 
-    public Date getDataCadastro() {
+    public Timestamp getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
+    public void setDataCadastro(Timestamp dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
     

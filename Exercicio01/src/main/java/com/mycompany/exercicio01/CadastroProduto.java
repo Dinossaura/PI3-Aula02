@@ -8,6 +8,7 @@ package com.mycompany.exercicio01;
 import Classe.Produto;
 import Service.ServicoProduto;
 import Validador.ValidadorProduto;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -196,12 +197,16 @@ public class CadastroProduto extends javax.swing.JFrame {
     }
      
     private void bttSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttSalvarActionPerformed
+        Timestamp datadeHoje = new Timestamp(System.currentTimeMillis());
+        
         Produto p = new Produto();
         p.setNome(txtNome.getText());
         p.setDesc(txtDesc.getText());
         p.setvCompra(Float.parseFloat(txtVCompra.getText()));
         p.setvVenda(Float.parseFloat(txtVVenda.getText()));
         p.setDesc(txtDesc.getText());
+        p.setCategoria(txtCat.getText());
+        p.setDataCadastro(datadeHoje);
         
        
         
@@ -215,9 +220,18 @@ public class CadastroProduto extends javax.swing.JFrame {
        JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso",
                     "Cadastrado", JOptionPane.INFORMATION_MESSAGE);
         
-        
+        limparTela();
     }//GEN-LAST:event_bttSalvarActionPerformed
 
+    private void limparTela(){
+        txtNome.setText("");
+        txtDesc.setText("");
+        txtVCompra.setText("");
+        txtVVenda.setText("");
+        txtDesc.setText("");
+        txtCat.setText("");
+        
+    }
     private void bttvoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttvoltarActionPerformed
         // TODO add your handling code here:
         if (telaPrinc == null || !telaPrinc.isDisplayable() ) {

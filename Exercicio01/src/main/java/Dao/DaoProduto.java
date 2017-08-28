@@ -36,7 +36,7 @@ public class DaoProduto {
                 preparedStatement.setFloat(3, p.getvCompra());
                 preparedStatement.setFloat(4, p.getvVenda());
                 preparedStatement.setString(5, p.getCategoria());
-                preparedStatement.setDate(6, p.getDataCadastro());
+                preparedStatement.setTimestamp(6, p.getDataCadastro());
 
                 preparedStatement.execute();
                 
@@ -88,7 +88,7 @@ public class DaoProduto {
                 p.setvCompra(result.getFloat("vl_compra"));
                 p.setvVenda(result.getFloat("vl_venda"));
                 p.setCategoria(result.getString("categoria"));
-                p.setDataCadastro(result.getDate("dt_cadastro"));
+                p.setDataCadastro(result.getTimestamp("dt_cadastro"));
                 listaP.add(p);
             }
         } finally {
@@ -125,7 +125,7 @@ public class DaoProduto {
                 preparedStatement.setFloat(3, produto.getvCompra());
                 preparedStatement.setFloat(4, produto.getvVenda());
                 preparedStatement.setString(5, produto.getCategoria());
-                preparedStatement.setDate(6, produto.getDataCadastro());
+                preparedStatement.setTimestamp(6, produto.getDataCadastro());
             
                 preparedStatement.executeUpdate();
                 preparedStatement.close();

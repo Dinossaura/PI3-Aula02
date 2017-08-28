@@ -55,20 +55,20 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
 
         TablePesquisar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Descrição", "Valor compra", "Valor venda", "Categoria"
+                "Nome", "Descrição", "Valor compra", "Valor venda", "Categoria", "Data"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -215,6 +215,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
                 row[2] = pro.getvCompra();
                 row[3] = pro.getvVenda();
                 row[4] = pro.getCategoria();
+                row[5] = pro.getDataCadastro();
                 model.addRow(row);
             }
         }
