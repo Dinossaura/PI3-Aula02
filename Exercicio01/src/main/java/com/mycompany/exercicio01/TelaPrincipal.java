@@ -37,6 +37,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Menu"));
 
+        BttCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cadastrar_produto.png"))); // NOI18N
         BttCadastrar.setText("Cadastrar");
         BttCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,6 +45,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        Bttalteracoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Alterar.png"))); // NOI18N
         Bttalteracoes.setText("Consulta/ Altera");
         Bttalteracoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +53,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        bttsair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sair.png"))); // NOI18N
         bttsair.setText("Sair");
         bttsair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

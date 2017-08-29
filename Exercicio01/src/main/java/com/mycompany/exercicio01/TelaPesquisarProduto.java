@@ -95,7 +95,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
 
         jLabel1.setText("Nome: ");
 
-        bttPesquisar.setText("Pesquisar");
+        bttPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Consultar.png"))); // NOI18N
         bttPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttPesquisarActionPerformed(evt);
@@ -158,7 +158,7 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
                     .addComponent(bttPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttvoltar)
                     .addComponent(bttExcluir)

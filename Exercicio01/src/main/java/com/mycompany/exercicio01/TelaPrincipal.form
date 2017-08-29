@@ -85,6 +85,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="BttCadastrar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Cadastrar_produto.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cadastrar"/>
           </Properties>
           <Events>
@@ -93,6 +96,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="Bttalteracoes">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Alterar.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Consulta/ Altera"/>
           </Properties>
           <Events>
@@ -101,6 +107,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="bttsair">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Sair.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
           <Events>

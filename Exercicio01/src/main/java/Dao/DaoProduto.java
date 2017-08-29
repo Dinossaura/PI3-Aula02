@@ -20,12 +20,14 @@ import java.util.List;
  * @author mayra.jpereira
  */
 public class DaoProduto {
+    private static Connection connection = null;
+    private static PreparedStatement preparedStatement = null;
+    private static ResultSet result = null;
+    
     //Insere novo produto na base de dados
      public static void inserir(Produto p) throws SQLException, Exception {
 
         String sql = "INSERT INTO produto (nome, descricao, vl_compra, vl_venda, categoria, dt_cadastro) VALUES (?, ?, ?, ?, ?,?)";
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
         try {
             connection = ConexaoBanco.getConnection();
             connection.setAutoCommit(false);
@@ -68,9 +70,7 @@ public class DaoProduto {
             sql = "SELECT * FROM produto WHERE nome LIKE ?";
         }
         List<Produto> listaP = null;
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet result = null;
+
         try {
             connection = ConexaoBanco.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -115,23 +115,23 @@ public class DaoProduto {
         String query = "SELECT * FROM produto WHERE id=?";//addicionar o % %
         
         try {
-            Connection connection = null;
+            
             connection = ConexaoBanco.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
             preparedStatement.setInt(1,id);
             
                         
-            ResultSet rs = preparedStatement.executeQuery();
+           result = preparedStatement.executeQuery();
             
-            while (rs.next()){
-                produto.setCod_prod(rs.getInt(1));
-                produto.setNome(rs.getString(2));
-                produto.setDesc(rs.getString(3));
-                produto.setvCompra(rs.getFloat(4));
-                produto.setvVenda(rs.getFloat(5));
-                produto.setCategoria(rs.getString(6));
-                produto.setDataCadastro(rs.getTimestamp(7));
+            while (result.next()){
+                produto.setCod_prod(result.getInt(1));
+                produto.setNome(result.getString(2));
+                produto.setDesc(result.getString(3));
+                produto.setvCompra(result.getFloat(4));
+                produto.setvVenda(result.getFloat(5));
+                produto.setCategoria(result.getString(6));
+                produto.setDataCadastro(result.getTimestamp(7));
                 lista.add(produto);
             }
             
@@ -148,8 +148,6 @@ public class DaoProduto {
         System.out.println("Atualizando produto...");
          String query = "UPDATE produto SET nome=?, descricao=?, vl_compra=?, vl_venda=?, categoria=?, dt_cadastro=? WHERE ID=?";
         
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
         try {
             connection = ConexaoBanco.getConnection();
             connection.setAutoCommit(false);
@@ -186,9 +184,7 @@ public class DaoProduto {
      public static void deletarProduto(int id) throws Exception{
             System.out.println("Deletando produto de codigo: "+id);
             String query = "DELETE FROM produto WHERE id=?";
-        
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+       
         try {
             connection = ConexaoBanco.getConnection();
             connection.setAutoCommit(false);
