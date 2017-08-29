@@ -12,7 +12,7 @@ import Validador.ValidadorProduto;
 import java.util.List;
 /**
  *
- * @author Magno
+ * @author Magno Veras
  */
 public class ServicoProduto {
    
